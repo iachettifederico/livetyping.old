@@ -1,13 +1,73 @@
+---
 AllCops:
-  TargetRubyVersion: 2.6
+  NewCops: enable
+  ExtraDetails: false
+  Exclude:
+  - ".git/**/*"
+  - bin/**/*
+  - tmp/**/*
+  - sandbox/**/*
+  - db/**/*.rb
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Style/AccessorGrouping:
+  EnforcedStyle: separated
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+  BracesRequiredMethods:
+  - let
+  - let!
+  - Given
+  - Given!
+  - When
+  - Then
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  SafeAutoCorrect: true
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/KeywordParametersOrder:
+  Enabled: false
 
 Style/StringLiterals:
-  Enabled: true
   EnforcedStyle: double_quotes
 
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Style/TrailingCommaInArguments:
+  Enabled: false
 
-Layout/LineLength:
-  Max: 120
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrivialAccessors:
+  Enabled: false
