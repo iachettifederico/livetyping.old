@@ -1,4 +1,5 @@
 ---
+
 AllCops:
   NewCops: enable
   ExtraDetails: false
@@ -45,6 +46,9 @@ Style/BlockDelimiters:
   - Then
 
 Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
