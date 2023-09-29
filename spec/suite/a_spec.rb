@@ -8,18 +8,21 @@ AwesomePrint.defaults = {
 
 require "livetyping/tracker"
 
-RSpec.describe Livetyping::Tracker do
-  let(:tracker) { Livetyping::Tracker.load }
+RSpec.describe LiveTyping::Tracker do
+  let(:tracker) { LiveTyping::Tracker.load }
 
   def track!(&block)
-    tracker.start
-    block.call
-    tracker.stop
+    fork do
+      tracker.start
+      block.call
+      tracker.stop
+    end
+    Process.wait
   end
 
   describe "starting and stopping" do
     it "can start" do
-      tracker = Livetyping::Tracker.load
+      tracker = LiveTyping::Tracker.load
 
       tracker.start
 
@@ -29,7 +32,7 @@ RSpec.describe Livetyping::Tracker do
     end
 
     it "can stop" do
-      tracker = Livetyping::Tracker.load
+      tracker = LiveTyping::Tracker.load
 
       tracker.start
       tracker.stop
@@ -51,13 +54,22 @@ RSpec.describe Livetyping::Tracker do
   end
 
   describe "tracking" do
-    it "does something" do
-      obj = Object.new
-      track! do
-        
+    around do |example|
+      remove_constants_defined_in_block do
+        example.run
       end
+    end
 
-      puts Hola
+    it "does something" do
+      tracker = LiveTyping::Tracker.load
+      mark = mark_here!(offset: 2)
+      tracker.start
+
+      tracker.stop
+
+      arguments = mark.slice(:source_file, :line).merge(column: 0)
+
+      expect(tracker.whats_on(**arguments)).to eq(LiveTyping::NoTypeInformation.new)
     end
   end
 end
