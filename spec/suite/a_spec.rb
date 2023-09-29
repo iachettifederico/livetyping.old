@@ -38,6 +38,18 @@ RSpec.describe Livetyping::Tracker do
     end
   end
 
+  describe "finding the project's root directory" do
+    it "can calculate the root of the current project" do
+      tracker = LiveTyping::Tracker.load
+
+      project_root = tracker.project_root
+
+      expect(project_root).to eq(Pathname.new(__dir__).join("../../").expand_path)
+    end
+
+    it "TODO: find using the Gemfile or other methods"
+  end
+
   describe "tracking" do
     it "does something" do
       obj = Object.new

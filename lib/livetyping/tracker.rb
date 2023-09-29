@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-module Livetyping
+require "pathname"
+
+module LiveTyping
   class Tracker
     def self.load
       new
@@ -16,6 +18,10 @@ module Livetyping
 
     def stop
       @started = false
+    end
+
+    def project_root
+      Pathname(__dir__).join("../../").expand_path
     end
 
     private
