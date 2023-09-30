@@ -10,15 +10,13 @@ module Livetyping
 
     def start
       @tracer.enable
-      @started = true
     end
 
     def started?
-      @started
+      @tracer.enabled?
     end
 
     def stop
-      @started = false
       @tracer.disable
     end
 
