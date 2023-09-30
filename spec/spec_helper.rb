@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 require "rake"
+require "livetyping"
+
+require "awesome_print"
+AwesomePrint.defaults = {
+  indent: 2,
+  index:  false,
+}
 
 RSpec.configure do |config|
   config.order = :random

@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require "awesome_print"
-AwesomePrint.defaults = {
-  indent: 2,
-  index:  false,
-}
-
 RSpec.describe Livetyping::Tracker do
   let(:tracker) { Livetyping::Tracker.load }
 
@@ -45,7 +39,7 @@ RSpec.describe Livetyping::Tracker do
 
       project_root = tracker.project_root
 
-      expect(project_root).to eq(Pathname.new(__dir__).join("../../").expand_path)
+      expect(project_root).to eq(Pathname.new(__dir__).join("../../../").expand_path)
     end
 
     it "TODO: find using the Gemfile or other methods"

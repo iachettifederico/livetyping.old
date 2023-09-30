@@ -7,7 +7,7 @@ module Livetyping
     end
 
     def to_s
-      if code =~ /\A\s+\Z/
+      if column >= code.size
         ""
       else
         code.to_s
@@ -22,28 +22,6 @@ module Livetyping
     def initialize(code:, column:)
       @code   = Code.for_string(code)
       @column = column
-    end
-  end
-
-  class Code
-    def self.for_string(code_string)
-      new(code_string: code_string)
-    end
-
-    def to_s
-      code_string
-    end
-
-    def =~(regex)
-      code_string =~ regex
-    end
-
-    private
-
-    attr_reader :code_string
-
-    def initialize(code_string:)
-      @code_string = code_string
     end
   end
 end

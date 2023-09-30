@@ -1,30 +1,38 @@
 # frozen_string_literal: true
 
-require "livetyping"
-
-RSpec.describe "Livetyping::TokenUnder" do
-  it "does something" do
-    token_under = Livetyping::TokenUnder.for(code: "", column: 0)
-
-    expect(token_under.to_s).to eq("")
+RSpec.describe Livetyping::TokenUnder do
+  def token_under(code, column)
+    Livetyping::TokenUnder.for(code: code, column: column).to_s
   end
 
-  it "does something" do
-    token_under = Livetyping::TokenUnder.for(code: "a", column: 0)
+  context "when the code string is empty or just spaces" do
+    it { expect(token_under("", 0)).to eq("") }
 
-    expect(token_under.to_s).to eq("a")
+    it { expect(token_under(" ", 0)).to eq("") }
+
+    it { expect(token_under("\t  \n", 0)).to eq("") }
   end
 
-  it "does something" do
-    token_under = Livetyping::TokenUnder.for(code: " ", column: 0)
+  context "when the code string has only one character" do
+    it { expect(token_under("a", 0)).to eq("a") }
 
-    expect(token_under.to_s).to eq("")
+    context "when the column is out of bounds after the code string" do
+      it { expect(token_under("a", 1)).to eq("") }
+
+      it { expect(token_under("a", 2)).to eq("") }
+    end
   end
 
-  it "does something" do
-    token_under = Livetyping::TokenUnder.for(code: "\t  \n", column: 0)
+  context "when the code string has more than one character" do
+    it { expect(token_under("aa", 0)).to eq("aa") }
 
-    expect(token_under.to_s).to eq("")
+    it { expect(token_under("aa", 1)).to eq("aa") }
+
+    it { expect(token_under("aa", 2)).to eq("") }
+  end
+
+  xcontext "when the string is a method call" do
+    it { expect(token_under("a.b", 0)).to eq("a") }
   end
 
   # it "TODO: out of bounds after the string"

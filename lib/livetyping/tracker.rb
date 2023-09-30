@@ -31,12 +31,12 @@ module Livetyping
       if found
         the_binding = found[:binding]
         code = found[:code]
-        if the_binding.local_variables.include?(token_under(code, column))
-        {
-          types: [
-            the_binding.local_variable_get(:a_local_variable).class.to_s
-          ],
-        }
+        if the_binding.local_variables.include?(token_under(code, column).to_sym)
+          {
+            types: [
+              the_binding.local_variable_get(:a_local_variable).class.to_s
+            ],
+          }
         else
           { types: [] }
         end
@@ -89,6 +89,7 @@ module Livetyping
     end
 
     def token_under(code, column)
+      ""
       # ap code
       # ap code[column]
     end
