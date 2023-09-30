@@ -7,11 +7,7 @@ module Livetyping
     end
 
     def to_s
-      if column >= code.size
-        ""
-      else
-        code.to_s
-      end
+      code.token_at_column(column)
     end
 
     private
