@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "livetyping/version"
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem
+# loader.inflector.inflect("livetyping" => "LiveTyping")
+loader.setup
 
 module Livetyping
-  class Error < StandardError; end
-  # Your code goes here...
 end

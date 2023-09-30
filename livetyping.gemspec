@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Federico Iachetti"]
   spec.email = ["iachetti.federico@gmail.com"]
 
-  spec.summary = "LiveTyping implementation for Ruby"
-  spec.description = "LiveTyping implementation for Ruby"
+  spec.summary = "Livetyping implementation for Ruby"
+  spec.description = "Livetyping implementation for Ruby"
   spec.homepage = "https://github.com/iachettifederico/livetyping"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.2"
@@ -33,9 +33,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
+  spec.add_dependency "zeitwerk", "~> 2.6.12"
 end
