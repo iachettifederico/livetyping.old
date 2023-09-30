@@ -71,7 +71,6 @@ module Livetyping
     end
 
     def trace_point_location(trace_point)
-      regex = /^(.+):(\d+):.+/
       source_file = trace_point.path
       line = trace_point.lineno
       code = if source_file =~ /<internal:.+>/
