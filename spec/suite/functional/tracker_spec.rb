@@ -117,6 +117,17 @@ RSpec.describe Livetyping::Tracker do
 
         expect(tracker.whats_on(**code_location)).to eq({ types: ["String"] })
       end
+
+      it "can track a local variable if the column is inside another variable name and it's of another type" do
+        mark = mark_here!(offset: 3)
+        tracker.start
+        another_local_variable = :im_a_symbol
+        another_local_variable.to_s
+        tracker.stop
+        code_location = mark.slice(:source_file, :line).merge(column: 12)
+
+        expect(tracker.whats_on(**code_location)).to eq({ types: ["Symbol"] })
+      end
     end
   end
 end

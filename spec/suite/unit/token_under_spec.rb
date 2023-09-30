@@ -47,6 +47,14 @@ RSpec.describe Livetyping::TokenUnder do
     it { expect(token_under("ab.cd", 2)).to eq(".") }
     it { expect(token_under("ab.cd", 3)).to eq("cd") }
     it { expect(token_under("ab.cd", 4)).to eq("cd") }
+
+    it { expect(token_under("  ab.cd", 0)).to eq("") }
+    it { expect(token_under("  ab.cd", 1)).to eq("") }
+    it { expect(token_under("  ab.cd", 2)).to eq("ab") }
+    it { expect(token_under("  ab.cd", 3)).to eq("ab") }
+    it { expect(token_under("  ab.cd", 4)).to eq(".") }
+    it { expect(token_under("  ab.cd", 5)).to eq("cd") }
+    it { expect(token_under("  ab.cd", 6)).to eq("cd") }
   end
 
   # it "TODO: out of bounds after the string"

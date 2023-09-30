@@ -10,6 +10,10 @@ module Livetyping
       code.token_at_column(column)
     end
 
+    def to_sym
+      to_s.to_sym
+    end
+
     private
 
     attr_reader :code
