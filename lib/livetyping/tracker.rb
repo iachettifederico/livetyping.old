@@ -55,11 +55,11 @@ module Livetyping
       @old_trace_point = nil
       @something = []
       @tracer = TracePoint.new(:line) do |trace_point|
-        do_something(trace_point)
+        track_types(trace_point)
       end
     end
 
-    def do_something(trace_point)
+    def track_types(trace_point)
       if @old_trace_point
         @something << {
           binding: @old_trace_point.binding,
